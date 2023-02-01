@@ -20,26 +20,27 @@ var init = function (window) {
         ////////////////////////////////////////////////////////////
         
         // TODO 1 : Declare and initialize our variables
-
-            var circle;
-            var circles = [];
+        var circle;
+        var circles = [];
 
         // TODO 2 : Create a function that draws a circle 
-
-            function(drawCircle){
-                circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-                physikz.addRandomVelocity(circle, canvas, 10, 10);
-                view.addChild(circle);
-                circles.push(circle);
-            };
+        function drawCircle() {
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            physikz.addRandomVelocity(circle, canvas, 10, 10);
+            view.addChild(circle);
+            circles.push(circle);
+        }
         
-
         // TODO 3 / 7 : Call the drawCircle() function 
-           drawCircle();
 
-           for(var loopsCompleted = 0; loopsCompleted < 100; loopsCompleted++) {
-            
-           }
+       // I deleted this because it was hard coded and annoying me. So, I created a loop that would work to access the array, thus making the circles move.
+
+        var loopsCompleted = 0; 
+        while (loopsCompleted < 100) {
+ 	        drawCircle();
+            loopsCompleted++
+        }
+        
 
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
@@ -52,26 +53,21 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-            physikz.updatePosition([0]);
-            physikz.updatePosition([1]);
-            physikz.updatePosition([2]);
-            physikz.updatePosition([3]);
-            physikz.updatePosition([4]);
-
-            for (var eachCircle = 0; eachCircle < circles.length; eachCircle++) {
-                var eachCircle = circles[eachCircle];
-            
-            // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            
-            game.checkCirclePosition([0]);
-            game.checkCirclePosition([1]);
-            game.checkCirclePosition([2]);
-            game.checkCirclePosition([3]);
-            game.checkCirclePosition([4]);
-
-            // TODO 9 : Iterate over the array
            
             
+            // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
+           
+            // These other two hard-coded loops were annoying as well, so I created a loop that would allow me to move circles.
+
+            // TODO 9 : Iterate over the array
+            for (var i = 0; i < circles.length; i++) {
+                var currentCircle = circles[i];
+                physikz.updatePosition(currentCircle);
+                game.checkCirclePosition(currentCircle);
+
+                // code to repeat using eachValue
+             }
+           
         }
     
         /* 
@@ -87,19 +83,22 @@ var init = function (window) {
             };
 
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            
-             if (circle.x < canvas.width) {
-                circle.x = 0
+            // if the circle has gone past the left side of the screen (minimum x value) then place it on the right?
+             if (circle.x < 0) {
+                circle.x = canvas.width;
             };
 
-            if (circle.x > canvas.height){
-                circle.x = 0
+            // if the circle has gone off the top of the screen, then place it on the bottom
+
+            if (circle.y > canvas.height){
+                circle.y = 0
             };
 
-            if (circle.x < canvas.height){
-                circle.c = 0
-            };
+            // if the circle has gone off the bottom of the screen, then place it on the top
 
+            if (circle.y < 0){
+                circle.y = canvas.height
+            };
 
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
         }
@@ -118,7 +117,7 @@ var init = function (window) {
         
         app.addUpdateable(window.opspark.game);
     }
-};
+}
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&
