@@ -26,7 +26,8 @@ var background = function (window) {
         var background;
         
         // ANIMATION VARIABLES HERE:
-        
+        var tree = draw.bitmap("img/tree.png");
+
      
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -40,13 +41,28 @@ var background = function (window) {
             background.addChild(backgroundFill);
             
             // TODO: 3 - Add a moon and starfield
-            draw.bitmap("image/moon.png")
             
+            for (var i=0; i<1000; i++){
+                var circle = draw.circle(1, "white", "LightGray", 0.1);
+                circle.x = canvasWidth * Math.random();
+                circle.y = groundY * Math.random();
+                background.addChild(circle);
+            }
+
+            var moon = draw.bitmap("img/moon.png");
+            moon.x = 1250;
+            moon.y = 50;
+            moon.scaleX = 0.20;
+            moon.scaleY = 0.20;
+            background.addChild(moon);
+
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             
             
             // TODO 4: Part 1 - Add a tree
-            
+            tree.x = ground.x+190;
+            tree.y = ground.y-215;
+            background.addChild(tree);
             
         } // end of render function - DO NOT DELETE
         
@@ -60,7 +76,11 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 4: Part 2 - Move the tree!
-            
+            tree.x = tree.x - 1;
+
+            if (tree.x < -200) {
+            tree.x = canvasWidth;
+}
             
             // TODO 5: Part 2 - Parallax
             
