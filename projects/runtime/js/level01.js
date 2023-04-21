@@ -27,31 +27,35 @@ var level01 = function (window) {
         
 
         // TODO 6 and on go here
-        // BEGIN EDITING YOUR CODE HERE
+        // BEGIN EDITING YOUR CODE HERE 
         
-        var hitZoneSize = 25;
-        var damageFromObstacle = 10;
-        var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
-        sawBladeHitZone.x = 400;
-        sawBladeHitZone.y = 425;
-        game.addGameItem(sawBladeHitZone);
-        var obstacleImage = draw.bitmap("img/sawblade.png");
-        sawBladeHitZone.addChild(obstacleImage);
-        obstacleImage.x = -25
-        obstacleImage.y = -25 
-        
-        function createSawBlade() {
+        function createSawBlade(x,y) {
             var hitZoneSize = 25;
-        var damageFromObstacle = 10;
-        var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
-        sawBladeHitZone.x = 400;
-        sawBladeHitZone.y = 425;
-        game.addGameItem(sawBladeHitZone);
-        var obstacleImage = draw.bitmap("img/sawblade.png");
-        sawBladeHitZone.addChild(obstacleImage);
-        obstacleImage.x = -25
-        obstacleImage.y = -25
-        }
+            var damageFromObstacle = 10;
+            var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+            sawBladeHitZone.x = x;
+            sawBladeHitZone.y = y;
+            game.addGameItem(sawBladeHitZone);
+            var obstacleImage = draw.bitmap("img/sawblade.png");
+            sawBladeHitZone.addChild(obstacleImage);
+            obstacleImage.x = -25
+            obstacleImage.y = -25
+        } 
+        createSawBlade(600,364)
+        createSawBlade(400,364)
+        createSawBlade(1500,475)
+
+        var enemy = game.createGameItem("enemy", 25);
+        var redSquare = draw.rect(20, 20, "violet");
+        redSquare.x = -25;
+        redSquare.y = -25;
+        enemy.addChild(redSquare);
+
+        enemy.x = 400;
+        enemy.y = groundY - 50;
+
+        game.addGameItem(enemy);
+
         // DO NOT EDIT CODE BELOW HERE
     }
 };
