@@ -46,7 +46,7 @@ var level01 = function (window) {
         createSawBlade(1500,475)
 
         var enemy = game.createGameItem("enemy", 25);
-        var redSquare = draw.rect(20, 20, "violet");
+        var redSquare = draw.rect(50, 50, "violet");
         redSquare.x = -25;
         redSquare.y = -25;
         enemy.addChild(redSquare);
@@ -55,6 +55,11 @@ var level01 = function (window) {
         enemy.y = groundY - 50;
 
         game.addGameItem(enemy);
+
+        enemy.velocityX = -5
+        enemy.velocityY
+        enemy.rotationalVelocity = -5
+        onProjectileCollision 
 
         // DO NOT EDIT CODE BELOW HERE
     }
