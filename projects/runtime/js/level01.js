@@ -41,8 +41,8 @@ var level01 = function (window) {
             obstacleImage.x = -25
             obstacleImage.y = -25
         } 
-        createSawBlade(600,364)
-        createSawBlade(400,364)
+        createSawBlade(600,362)
+        createSawBlade(400,362)
         createSawBlade(1500,475)
 
         var enemy = game.createGameItem("enemy", 25);
@@ -59,7 +59,21 @@ var level01 = function (window) {
         enemy.velocityX = -5
         enemy.velocityY
         enemy.rotationalVelocity = -5
-        onProjectileCollision 
+        
+        enemy.onPlayerCollision = function(){
+            game.changeIntegrity(-10)
+
+        };
+
+        enemy.onProjectileCollision = function(){
+            game.increaseScore(100);
+            enemy.shrink();
+        }
+
+        function createEnemy() {
+            
+          }
+          
 
         // DO NOT EDIT CODE BELOW HERE
     }
