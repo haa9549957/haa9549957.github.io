@@ -19,7 +19,11 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 400, "y": groundY },
                 { "type": "sawblade", "x": 600, "y": groundY },
                 { "type": "sawblade", "x": 900, "y": groundY },
+
             ]
+
+           
+            
         };
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
@@ -29,7 +33,7 @@ var level01 = function (window) {
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE 
         
-        function createSawBlade(x,y) {
+       function createSawBlade(x,y) {
             var hitZoneSize = 25;
             var damageFromObstacle = 10;
             var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
@@ -38,18 +42,36 @@ var level01 = function (window) {
             game.addGameItem(sawBladeHitZone);
             var obstacleImage = draw.bitmap("img/sawblade.png");
             sawBladeHitZone.addChild(obstacleImage);
-            obstacleImage.x = -25
-            obstacleImage.y = -25
+            obstacleImage.x = -hitZoneSize;
+            obstacleImage.y = -hitZoneSize;
         } 
         createSawBlade(600,362)
         createSawBlade(400,362)
         createSawBlade(1500,475)
-
         var enemy = game.createGameItem("enemy", 25);
-        var redSquare = draw.rect(50, 50, "violet");
-        redSquare.x = -25;
-        redSquare.y = -25;
-        enemy.addChild(redSquare);
+        var violetSquare = draw.rect(50, 50, "violet");
+        violetSquare.x = -25;
+        violetSquare.y = -25;
+        enemy.addChild(violetSquare);
+
+        function createEnemy(x, y) {
+            var enemy = 
+                game.createGameItem('enemy',80);
+
+            var enemyTroubleshoot = 
+                draw.bitmap(img/enemy.png);
+            enemyTroubleshoot.x = -80;
+            enemyTroubleshoot.y = -80;
+            enemy.addChild(enemyTroubleshoot);
+            enemy.x = x;
+            enemy.y = y;
+            game.addGameItem(enemy);
+            enemy.velocityX = -2
+            enemy.onPlayerCollision = function(){
+                game.changeIntegrity(-50);
+            }
+
+       
 
         enemy.x = 400;
         enemy.y = groundY - 50;
@@ -70,8 +92,30 @@ var level01 = function (window) {
             enemy.shrink();
         }
 
-        function createEnemy() {
-            
+        
+
+            function createReward(x, y){
+                var reward = 
+                    game.createGameItem('reward',32);
+                var rewardThing = 
+                    draw.bitmap('img/reward.png');
+                rewardThing.x = -32
+                rewardThing.y = -32
+                reward.addChild(rewardThing);
+                reward.x = x;
+                reward.y = y;
+                game.addGameItem(reward);
+                reward.velocity.X = -2
+                reward.rotationalVelocity = 4
+
+                reward.onPlayerCollision = 
+                    function() {
+                        game.changeIntegrity(25);
+                        game.increaseScore(300)
+                        reward.fadeOut();
+                    }
+            } 
+
           }
           
 
