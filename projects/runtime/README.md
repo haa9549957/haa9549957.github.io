@@ -45,7 +45,7 @@ Open a new bash terminal. Then in the terminal, enter the following commands in 
 - bower install
 - cd ../..
 - git add -A
-- git commit -m "added runtime"
+- git add -A "added runtime"
 - git push
 
 > **WARNING:** the `npm install -g opspark` command may take a while to complete
