@@ -76,7 +76,7 @@ var level01 = function (window) {
             weenBladeHitZone.y = y;
             game.addGameItem(weenBladeHitZone);
             
-            var obstacleImage = draw.bitmap("img/nuggie.jpg");
+            var obstacleImage = draw.bitmap("img/CARL.jpg");
             obstacleImage.x = -25;
             obstacleImage.y = -25;
             weenBladeHitZone.addChild(obstacleImage);
@@ -87,7 +87,7 @@ var level01 = function (window) {
         
         function createEnemy(x, y) {
             var enemy = game.createGameItem("enemy", 50);
-            var redSquare = draw.bitmap("img/don.jpg");
+            var redSquare = draw.bitmap("img/don.jpeg");
             redSquare.x = -50;
             redSquare.y = -50;
             enemy.addChild(redSquare);
@@ -110,7 +110,7 @@ var level01 = function (window) {
 
         function createReward(x,y) {
             var enemy = game.createGameItem("enemy", 50);
-            var redSquare = draw.bitmap("img/CARL.jpg");
+            var redSquare = draw.bitmap("img/nuggie.jpg");
             redSquare.x = -50;
             redSquare.y = -50;
             enemy.addChild(redSquare);
